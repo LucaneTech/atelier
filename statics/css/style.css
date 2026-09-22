@@ -1,0 +1,312 @@
+/* ==========================================
+   RESET & VARIABLES GLOBALES
+   ========================================== */
+:root {
+  --primary-color: #dca626;   /* Jaune Or Active'Rise */
+  --primary-hover: #c4921d;
+  --dark-color: #111111;      /* Noir sombre */
+  --text-muted: #555555;
+  --bg-color: #f8f9fa;
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+.main-container {
+  flex: 1;
+  width: 100%;
+}
+
+/* ==========================================
+   EN-TÊTE / BARRE DE NAVIGATION (.barNav)
+   ========================================== */
+.barNav {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.logo-img {
+  height: 70px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.5px;
+  color: var(--dark-color);
+}
+/* ==========================================
+   LOGO AVEC ICÔNE ET APOSTROPHE LOGO TEXT
+ ========================================== */  
+.logo-icon,
+.logo-icon-apost {
+  color: var(--primary-color);
+  font-weight: 900;
+}
+
+
+/* ==========================================
+   SECTION PRINCIPALE ET ARRIÈRE-PLAN FLOUTÉ
+   ========================================== */
+.hero-section {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding: 3rem 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  overflow: hidden; /* Coupe les bordures blanches du flou */
+}
+
+/* Image de fond isolée en z-index négatif */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* L'image avec un voile blanc transparent par-dessus pour garder une excellente lisibilité */
+  background: linear-gradient(rgba(248, 249, 250, 0.75), rgba(248, 249, 250, 0.85)), 
+              url('../../image/file_000000001a68820bad85902a4491fcff.png') center/cover no-repeat;
+  
+  filter: blur(8px); /* Intensité du flou */
+  transform: scale(1.08); /* Agrandit légèrement pour supprimer les bords blancs réduits par le flou */
+  z-index: 0;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Conteneur principal superposé */
+.hero-container {
+  position: relative;
+  z-index: 1; /* Le texte et les cartes restent devant l'arrière-plan */
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ==========================================
+   TEXTES ET TITRES
+   ========================================== */
+.hero-text {
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--dark-color);
+}
+
+.hero-text h1 span {
+  color: var(--primary-color);
+}
+
+.hero-text h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+citation {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   GRILLE D'INFORMATIONS (.grille-info)
+   ========================================== */
+.grille-info {
+  width: 100%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.detail-item strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+}
+
+.detail-item p {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.detail-item .price {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+.detail-item .limit {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+/* ==========================================
+   FORMULAIRE D'INSCRIPTION (.grille-form)
+   ========================================== */
+.grille-form {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grille-form h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
+}
+
+.grille-form p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.8rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input {
+  padding: 0.82rem 1rem;
+  border: 1.5px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(220, 166, 38, 0.15);
+}
+
+.grille-form button[type="submit"] {
+  width: 100%;
+  padding: 0.95rem;
+  background-color: var(--dark-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 0.5rem;
+}
+
+.grille-form button[type="submit"]:hover {
+  background-color: var(--primary-color);
+}
+
+/* ==========================================
+   PIED DE PAGE (footer)
+   ========================================== */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  border-top: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 10;
+}
+
+/* ==========================================
+   ADAPTATION MOBILE (Responsive)
+   ========================================== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 5%;
+    gap: 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .grille-form {
+    padding: 1.5rem;
+  }
+}
