@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active_Rise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="statics/css/style.css">
+</head>
+<body>
+
+    <!-- Cet élément va gérer UNIQUEMENT l'image de fond et le flou -->
+  <div class="bg-blur"></div>
+
+<div class="page-content">
+    <!-- en tete et bar de Navigation -->
+    <header class="barNav">
+      <div class="logo">
+      <img src="image/Logo.png" alt="Logo Active_Rise" class="logo-img">
+    </div>
+    </header>
+
+<main class="main-container">
+
+  <!-- Tout votre contenu reste intact à l'intérieur de hero-section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Atelier intensif de <span>communication commerciale</span></h1>
+        <h2> <strong>THEME : </strong>Ce que vos clients auraient voulu entendre</h2>
+
+   </div>
+
+      <citation>« Vos clients ne vous ont jamais dit ce qu'ils auraient voulu entendre. Cet atelier, si. »</citation>
+    <div class="buton-inscr">
+      <a href="#inscription" class="btn-inscr">Cliquez pour le formulaire</a>
+
+    </div>
+
+    <div class="hero-para">
+       <p>La vente est un système. Elle mobilise la compréhension du besoin, la posture, la relation, le timing,
+         l'offre et bien d'autres variables. Mais parmi tous ces leviers,
+          il en est un que les professionnels sous-estiment systématiquement, ce qui est dit,
+          comment c'est dit, et au bon moment. Des opportunités solides s'effondrent
+          non pas parce que l'offre était mauvaise, mais parce qu'une phrase essentielle
+           n'a pas été prononcée. Cet atelier travaille précisément sur ce levier.
+     </p>
+    </div>
+    <!-- Tableau des sessions -->
+    <div class="grille-info">
+      <div class="detail-item">
+        <strong>Date & Heure</strong>
+        <p>Samedi 3 octobre 2026</p>
+        <p>14h00 à 16h00 (2 heures)</p>
+      </div>
+      <div class="detail-item">
+        <strong>Lieu</strong>
+        <p>Moulembo — derrière le terrain Tata Loboko</p>
+      </div>
+      <div class="detail-item">
+        <strong>Participation</strong>
+        <p class="price">0 FCFA</p>
+        <span class="limit"> 15 participants max</span>
+      </div>
+    </div>
+    <div class="image-text-presentateur">
+      <div class="presentateur-info">
+        <h3>PRÉSENTATION DU FACILITATEUR</h3>
+        <h5>Mikamona Miren Abed</h5>
+        <span>Consultant en Performance Commerciale &amp; Marketing Stratégique</span>
+        <p class="presentateur-role"><strong>Formateur | Fondateur d'Active Rise</strong></p>
+        <p class="presentateur-bio">7 ans d'immersion terrain ont forgé en lui une conviction que peu de professionnels osent formuler :</p>
+        <blockquote class="presentateur-quote">"L'échec d'une vente est rarement un problème de technique. C'est un problème de diagnostic, une incompréhension du marché, de la cible, ou du besoin réel du client."</blockquote>
+        <p class="presentateur-bio">Sa démarche est celle d'un consultant : identifier le problème de fond avant de prescrire la moindre solution. C'est cet alignement entre le discours et la réalité du client qu'il accompagne à travers Active Rise et c'est précisément ce que cet atelier vient construire. Ce que vos clients auraient voulu entendre, vous auriez dû le savoir avant de parler.</p>
+      </div>
+      <div class="image-presentateur">
+        <img src="image/WhatsApp Image 2026-09-26 at 12.35.08 (1).jpeg" alt="Portrait de MIKAMONA Miran" class="presentateur-img">
+      </div>
+
+    </div>
+
+    <!-- Formulaire d'inscription -->
+    <div class="grille-form" id="inscription">
+      <h2>Inscrivez-Vous</h2>
+       <p>Réservez vos places dès maintenant</p>
+      <form action="https://formspree.io/f/mgavanal" method="post">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Votre Nom" required>
+        </div>
+
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="profil">Profil</label>
+          <input type="text" id="profil" name="profil" placeholder="Votre profil" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+        </div>
+
+        <div class="form-group">    
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="+242 06 ... votre whatsapp" inputmode="tel" pattern="\+?[0-9 ]{8,15}" title="Utilisez uniquement des chiffres, des espaces et éventuellement le signe +." required>
+        </div>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+  </section>
+</main>
+ </div>
+    <footer>
+    <p>
+        <strong>activerise.pro
+
+        </strong> | contact@activerise.pro
+        | +242 06 999 58 15
+    </p>
+    <p>&copy; 2026 Active_Rise. Tous droits réservés.</p>
+  </footer>
+  <script src="statics/js/script.js"></script>
+</body>
+</html>

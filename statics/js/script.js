@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+  const pageContent = document.querySelector('.page-content');
+  if (pageContent) {
+    window.setTimeout(() => pageContent.classList.add('bg-focused'), 3000);
+  }
+
   /* ==========================================
      1. GESTION DU FORMULAIRE (Formspree AJAX)
      ========================================== */
@@ -74,12 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================
      4. ANIMATION DE DÉROULEMENT (Scroll Reveal)
      ========================================== */
-  const animatedElements = document.querySelectorAll('.grille-info, .grille-form, citation');
+  const animatedElements = document.querySelectorAll('.grille-info, .grille-form, .hero-text, .detail-item, citation, .detail-item h3, .detail-item p');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
+        entry.target.style.opacity = '3';
         entry.target.style.transform = 'translateY(0)';
       }
     });
@@ -95,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
  /* ==========================================
-     3. COMPTE À REBOURS (Jusqu'au 3 Octobre 2026)
-   
+   3. COMPTE À REBOURS (Jusqu'au 3 Octobre 2026)
+
   const eventDate = new Date('2026-10-03T14:00:00').getTime();
   const dateDetailItem = document.querySelectorAll('.detail-item')[0];
 
@@ -128,25 +132,17 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 60000); // Mise à jour toutes les minutes
   }
-  ========================================== */
-    /* ==========================================
-     2. GESTION DYNAMIQUE DES PLACES DISPONIBLES
-   
-  let placesRestantes = 15; // Nombre initial
-  const limitElement = document.querySelector('.detail-item .limit');
 
-  function reduirePlacesDisponibles() {
+   function reduirePlacesDisponibles() {
     if (limitElement && placesRestantes > 0) {
       placesRestantes--;
-      if (placesRestantes === 0) {
-        limitElement.textContent = "🚫 COMPLET — Plus de places disponibles";
-        limitElement.style.color = "#d63031";
-        
-        // Désactiver le formulaire si complet
+      limitElement.textContent = placesRestantes === 0
+        ? "COMPLET - Plus de places disponibles"
+        : `⚠️ ${placesRestantes} places restantes max`;
+
+      if (placesRestantes === 0 && form) {
         const submitBtn = form.querySelector('button[type="submit"]');
         if (submitBtn) submitBtn.disabled = true;
-      } else {
-        limitElement.textContent = `⚠️ ${placesRestantes} places restantes max`;
       }
     }
   }
