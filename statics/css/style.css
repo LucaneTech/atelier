@@ -617,7 +617,8 @@ footer {
     font-family: var(--font-main);
     font-size: 0.95rem;
     line-height: 1.7;
-  }
+   margin-bottom: 10rem;
+    }
 
   .citation,
   citation {
