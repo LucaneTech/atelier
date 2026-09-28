@@ -29,7 +29,7 @@
     <div class="hero-container">
       <div class="hero-text">
         <h1>ATELIER INTENSIF DE <span>COMMUNICATION COMMERCIALE</span></h1>
-        <h2> <strong>THEME : </strong>Ce que vos clients auraient voulu entendre</h2>
+        <h2>THEME<span> : Ce que vos clients auraient voulu entendre</span></h2>
 
    </div>
 
@@ -82,7 +82,7 @@
 
     <!-- Formulaire d'inscription -->
     <div class="grille-form" id="inscription">
-      <h2>Inscrivez-Vous</h2>
+      <h1>Inscrivez-Vous</h1>
        <p>Réservez vos places dès maintenant</p>
       <form action="https://formspree.io/f/mgavanal" method="post">
         <div class="form-group">
@@ -109,9 +109,14 @@
           <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
         </div>
 
-        <div class="form-group">    
+        <div class="form-group">
           <label for="telephone">Téléphone</label>
           <input type="tel" id="telephone" name="telephone" placeholder="+242 06 ... votre whatsapp" inputmode="tel" pattern="\+?[0-9 ]{8,15}" title="Utilisez uniquement des chiffres, des espaces et éventuellement le signe +." required>
+        </div>
+        <div class="form-group">
+          <label for="commentaire">Votre avis</label>
+          <textarea id="commentaire" name="commentaire" maxlength="200" placeholder="Dites-nous ce que vous pensez de l'atelier"></textarea>
+          <small class="character-count" aria-live="polite">0/200 caractères</small>
         </div>
         <button type="submit">S'inscrire</button>
       </form>

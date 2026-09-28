@@ -9,11 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================== */
   const form = document.querySelector('.grille-form form');
   const telephoneInput = document.querySelector('#telephone');
+  const commentaireInput = document.querySelector('#commentaire');
+  const characterCount = document.querySelector('.character-count');
+  const updateCharacterCount = () => {
+    if (commentaireInput && characterCount) {
+      commentaireInput.value = commentaireInput.value.slice(0, 200);
+      characterCount.textContent = `${commentaireInput.value.length}/200 caractères`;
+    }
+  };
 
   if (telephoneInput) {
     telephoneInput.addEventListener('input', () => {
       telephoneInput.value = telephoneInput.value.replace(/[^0-9+ ]/g, '');
     });
+  }
+
+  if (commentaireInput && characterCount) {
+    commentaireInput.addEventListener('input', updateCharacterCount);
+    updateCharacterCount();
   }
   
   if (form) {
@@ -51,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
           statusMessage.style.color = '#27ae60';
           statusMessage.textContent = "✅ Inscription réussie ! Nous vous contacterons rapidement.";
           form.reset();
+          updateCharacterCount();
           
           // Mise à jour visuelle des places disponibles après inscription
           reduirePlacesDisponibles();
@@ -78,23 +92,45 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================
      4. ANIMATION DE DÉROULEMENT (Scroll Reveal)
      ========================================== */
-  const animatedElements = document.querySelectorAll('.grille-info, .grille-form, .hero-text, .detail-item, citation, .detail-item h3, .detail-item p');
+  const heroText = document.querySelector('.hero-text');
+  if (heroText) {
+    const updateHeroTextVisibility = () => {
+      const bounds = heroText.getBoundingClientRect();
+      const isVisible = bounds.top < window.innerHeight * 0.65 && bounds.bottom > window.innerHeight * 0.35;
+      heroText.classList.toggle('is-visible', isVisible);
+    };
+
+    const heroTextObserver = new IntersectionObserver(([entry]) => {
+      heroText.classList.toggle('is-visible', entry.isIntersecting);
+    }, { threshold: 0.35 });
+
+    heroTextObserver.observe(heroText);
+    updateHeroTextVisibility();
+  }
+
+  const animatedElements = document.querySelectorAll('.grille-info, .grille-form, .detail-item, .detail-item h3, .detail-item p, .buton-inscr, citation');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '3';
-        entry.target.style.transform = 'translateY(0)';
-      }
+      entry.target.classList.toggle('scroll-reveal', true);
+      entry.target.classList.toggle('is-visible', entry.isIntersecting);
     });
   }, { threshold: 0.2 });
 
+  const updateAnimatedVisibility = () => {
+    animatedElements.forEach(element => {
+      const bounds = element.getBoundingClientRect();
+      const isVisible = bounds.top < window.innerHeight * 0.85 && bounds.bottom > window.innerHeight * 0.15;
+      element.classList.toggle('is-visible', isVisible);
+    });
+  };
+
   animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+    el.classList.add('scroll-reveal');
     observer.observe(el);
   });
+
+  updateAnimatedVisibility();
 
 });
 

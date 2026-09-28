@@ -38,7 +38,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   background: url('../../image/WhatsApp Image 2026-09-26 at 12.35.07.jpeg') center/cover no-repeat;
   filter: blur(0) brightness(1);
   transform: scale(1);
@@ -73,29 +73,21 @@ body {
    EN-TÊTE / BARRE DE NAVIGATION (.barNav)
    ========================================== */
 .barNav {
+  position:fixed;
+  width: 100%;
+
   display: flex;
   align-items: center;
   padding: 4px 16px;
-  background-color: rgba(247, 245, 242, 0.975);
-
-  backdrop-filter: blur(10px);
+  background-color: rgb(247, 245, 242);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: relative;
   z-index: 10;
-}
-
-.logo {
-  width: 100px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
+  animation: slideDown 0.5s ease-out;
 }
 
 .logo-img {
   display: block;
-  width: 100px;
+  width: 200px;
   height: 56px;
   object-fit: contain;
 }
@@ -108,6 +100,7 @@ body {
 .hero-section {
   position: relative;
   isolation: isolate;
+  margin-top: 50px; /* Ajustez cette valeur en fonction de la hauteur de votre barre de navigation */
   width: 100%;
   min-height: calc(100vh - 80px);
   padding: 3rem 8%;
@@ -151,6 +144,7 @@ body {
   line-height: 1.2;
   letter-spacing: -0.5px;
   height: 150px;
+  animation: none;
 
 }
 
@@ -164,10 +158,48 @@ body {
   font-style: normal;
   height: 80px;
   color:#dca626;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  animation: none;
+}
+
+.page-content.bg-focused .hero-text.is-visible h1 {
+  animation: title-clear 3s ease-out 0.1s both;
+}
+
+.page-content.bg-focused .hero-text.is-visible h2 {
+  animation: title-clear 3s ease-out 0.45s both;
+}
+.hero-text h2 span{
+  font-family: "Noto Serif", serif;
+  font-style: normal;
+  color:#fcfcfcf8;
+  font-size: 1.9rem;
   font-weight: 600;
   margin-top: 0.5rem;
 }
+
+@keyframes title-clear {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-text h1,
+  .hero-text h2 {
+    animation: none;
+  }
+}
+
 
 .buton-inscr {
   padding: 0.8rem 1.5rem;
@@ -181,9 +213,30 @@ body {
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
+  animation: none;
 }
+
+.page-content.bg-focused .buton-inscr.is-visible {
+  animation: button-blink 2s ease-in-out infinite;
+}
+
+@keyframes button-blink{
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(220, 166, 38, 0);
+  }
+  25%, 75% {
+    box-shadow: 0 0 18px rgb(255, 189, 35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .buton-inscr {
+    animation: none;
+  }
+}
+
 .buton-inscr a {
-  font-family: "JetBrains Mono", monospace;
+ font-family: "Noto Serif", serif;
   /*text-decoration: none;*/
   color: #f9f9f9;
   display: inline-block;
@@ -219,6 +272,27 @@ citation {
   padding-left: 1rem;
   max-width: 700px;
   margin: 0 auto;
+  animation: none;
+  will-change: transform;
+}
+
+.page-content.bg-focused citation.is-visible {
+  animation: citation-drift 5s ease-in-out infinite alternate;
+}
+
+@keyframes citation-drift {
+  from {
+    transform: translateX(-18px);
+  }
+  to {
+    transform: translateX(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  citation {
+    animation: none;
+  }
 }
 
 /* ==========================================
@@ -279,8 +353,8 @@ citation {
 .presentateur-quote {
   margin: 0.9rem 0 1rem;
   padding: 1rem 1.1rem;
-  border-left: 4px solid var(--primary-color);
-  border-radius: 0 8px 8px 0;
+  border-bottom: 4px solid var(--primary-color);
+  border-radius: 5px;
   background: #eef3ef;
   color: #263b31;
   font-family: 'Lora', Georgia, serif;
@@ -330,6 +404,7 @@ citation {
 
 .detail-item p {
   font-family: "Noto Serif", serif;
+  color: #f3f2ee;
   font-optical-sizing: auto;
   font-weight: 600;
   font-size: 0.95rem;
@@ -363,14 +438,15 @@ citation {
   margin: 0 auto;
 }
 
-.grille-form h2 {
+.grille-form h1 {
   font-size: 1.8rem;
+  color: var(--primary-color);
   font-weight: 800;
   margin-bottom: 0.3rem;
 }
 
- .para1 {
-  color:#c4921d;
+ .grille-form p{
+  color:#efefee;
   font-size: 0.95rem;
   margin-bottom: 1.8rem;
 }
@@ -398,9 +474,33 @@ citation {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.form-group textarea {
+  padding: 0.82rem 1rem;
+  min-height: 110px;
+  resize: vertical;
+  font-family: inherit;
+  border: 1.5px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
 .form-group input:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(220, 166, 38, 0.15);
+}
+
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(220, 166, 38, 0.15);
+}
+
+.character-count {
+  align-self: flex-end;
+  margin-top: 0.35rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.78rem;
 }
 
 .grille-form button[type="submit"] {
@@ -419,6 +519,22 @@ citation {
 
 .grille-form button[type="submit"]:hover {
   background-color: var(--primary-color);
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-content:not(.bg-focused) .scroll-reveal.is-visible {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 /* ==========================================
@@ -549,6 +665,11 @@ footer {
 
   .form-group input {
     min-height: 48px;
+    font-size: 1rem;
+  }
+
+  .form-group textarea {
+    min-height: 120px;
     font-size: 1rem;
   }
 
