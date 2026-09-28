@@ -570,22 +570,40 @@ footer {
   }
 
   .hero-section {
-    min-height: auto;
-    padding: 2rem 1rem 2.5rem;
-    gap: 1.5rem;
+    margin-top: 64px;
+    min-height: calc(100svh - 64px);
+    padding: 1rem 1rem 1.5rem;
+    gap: 1rem;
   }
 
   .hero-container {
-    gap: 1.4rem;
+    gap: 1.08rem;
+  }
+
+  .hero-intro {
+    min-height: calc(100svh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.5rem;
   }
 
   .hero-text h1 {
-    font-size: 1.8rem;
-    overflow-wrap: anywhere;
+    margin-top: 0;
+    height: auto;
+    font-size: 2rem;
+    line-height: 1.15;
   }
 
   .hero-text h2 {
-    font-size: 1.05rem;
+    margin-top: 0.5rem;
+    height: auto;
+    font-size: 1.15rem;
+    line-height: 1.35;
+  }
+
+  .hero-text h2 span {
+    font-size: inherit;
   }
 
   .hero-para {
@@ -596,18 +614,21 @@ footer {
 
   .hero-para p {
     font-family: var(--font-main);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.85rem;
+    line-height: 1.45;
   }
 
   .citation,
   citation {
     padding: 0;
+    margin: 0;
     font-size: 1rem;
     line-height: 1.6;
+    animation: none;
   }
 
   .buton-inscr {
+    margin-left: 0;
     width: 100%;
     padding: 0;
   }
