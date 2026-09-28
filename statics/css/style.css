@@ -577,27 +577,27 @@ footer {
   }
 
   .hero-container {
-    gap: 0.89rem;
+    gap:3rem;
   }
 
   .hero-intro {
-    min-height: calc(100svh - 80px);
+    min-height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     gap: 3rem;
   }
 
   .hero-text h1 {
-    margin-top: 70px;
+    margin-top: 99px;
     height: auto;
     font-size: 2rem;
     line-height: 1.15;
   }
 
   .hero-text h2 {
-    margin-top: 64px;
-    height: auto;
+    margin-top: 88px;
+    height: 50px;
     font-size: 1.15rem;
     line-height: 1.35;
   }
@@ -613,6 +613,7 @@ footer {
   }
 
   .hero-para p {
+    margin-top: 10rem;
     font-family: var(--font-main);
     font-size: 0.95rem;
     line-height: 1.7;
@@ -628,6 +629,7 @@ footer {
   }
 
   .buton-inscr {
+    margin-top: 90px;
     margin-left: 0;
     width: 100%;
     padding: 0;
@@ -641,6 +643,7 @@ footer {
   }
 
   .grille-info {
+    
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
     padding: 0.5rem 1rem;
