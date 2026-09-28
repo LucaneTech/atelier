@@ -73,13 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
           statusMessage.style.color = '#e74c3c';
           if (Object.hasOwn(data, 'errors')) {
             statusMessage.textContent = data.errors.map(error => error["message"]).join(", ");
-          } else {
-            statusMessage.textContent = "❌ Une erreur s'est produite lors de l'envoi.";
           }
         }
       } catch (error) {
-        statusMessage.style.color = '#e74c3c';
-        statusMessage.textContent = "❌ Erreur de réseau. Veuillez vérifier votre connexion.";
+        console.error('Échec de l’envoi du formulaire :', error);
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalBtnText;
