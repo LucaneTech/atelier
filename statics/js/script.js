@@ -1,7 +1,24 @@
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('pageshow', () => {
+  window.setTimeout(() => {
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.scrollTo(0, 0);
+  }, 0);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const pageContent = document.querySelector('.page-content');
   if (pageContent) {
-    window.setTimeout(() => pageContent.classList.add('bg-focused'), 3000);
+    document.body.classList.add('is-opening');
+    window.setTimeout(() => {
+      pageContent.classList.add('bg-focused');
+      window.setTimeout(() => document.body.classList.remove('is-opening'), 1200);
+    }, 3000);
   }
 
   /* ==========================================
@@ -68,15 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
           
           // Mise à jour visuelle des places disponibles après inscription
           reduirePlacesDisponibles();
-        } else {
-          const data = await response.json();
-          statusMessage.style.color = '#e74c3c';
-          if (Object.hasOwn(data, 'errors')) {
-            statusMessage.textContent = data.errors.map(error => error["message"]).join(", ");
-          }
         }
-      } catch (error) {
-        console.error('Échec de l’envoi du formulaire :', error);
+      } catch {
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalBtnText;
