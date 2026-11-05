@@ -949,3 +949,8 @@ footer {
 .receipt-footer p + p {
   margin-top: 0.25rem;
 }
+
+/* Masque le badge "Powered by Netlify" injecté par l'hébergeur */
+#nl-badge-frame {
+  display: none !important;
+}
