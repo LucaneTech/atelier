@@ -1,16 +1,3 @@
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-
-window.addEventListener('pageshow', () => {
-  window.setTimeout(() => {
-    if (window.location.hash) {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-    window.scrollTo(0, 0);
-  }, 0);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   const pageContent = document.querySelector('.page-content');
   if (pageContent) {
@@ -24,29 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================
      1. GESTION DU FORMULAIRE (Formspree AJAX)
      ========================================== */
-  const form = document.querySelector('.grille-form form');
-  const telephoneInput = document.querySelector('#telephone');
-  const commentaireInput = document.querySelector('#commentaire');
-  const characterCount = document.querySelector('.character-count');
-  const updateCharacterCount = () => {
-    if (commentaireInput && characterCount) {
-      commentaireInput.value = commentaireInput.value.slice(0, 200);
-      characterCount.textContent = `${commentaireInput.value.length}/200 caractères`;
-    }
-  };
+     const form = document.querySelector('.grille-form form');
+     const difficultyOptions = form
+       ? form.querySelectorAll('input[name="difficultes"]')
+       : [];
+     const updateDifficultyValidity = () => {
+       if (difficultyOptions.length === 0) return;
 
-  if (telephoneInput) {
-    telephoneInput.addEventListener('input', () => {
-      telephoneInput.value = telephoneInput.value.replace(/[^0-9+ ]/g, '');
-    });
-  }
+       const hasSelection = Array.from(difficultyOptions).some(option => option.checked);
+       difficultyOptions[0].setCustomValidity(
+         hasSelection ? '' : 'Veuillez sélectionner au moins une difficulté.'
+       );
+     };
 
-  if (commentaireInput && characterCount) {
-    commentaireInput.addEventListener('input', updateCharacterCount);
-    updateCharacterCount();
-  }
+     if (form) {
+       if (difficultyOptions.length > 0) {
+         difficultyOptions.forEach(option => {
+           option.addEventListener('change', updateDifficultyValidity);
+         });
+         updateDifficultyValidity();
+       }
+     }
   
-  if (form) {
+     if (form) {
     // Création d'une zone de message de retour
     const statusMessage = document.createElement('div');
     statusMessage.className = 'form-status';
@@ -78,15 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.ok) {
-          statusMessage.style.color = '#27ae60';
-          statusMessage.textContent = "✅ Inscription réussie ! Nous vous contacterons rapidement.";
-          form.reset();
-          updateCharacterCount();
-          
-          // Mise à jour visuelle des places disponibles après inscription
-          reduirePlacesDisponibles();
+          window.location.assign(new URL(form.dataset.successUrl, window.location.href).href);
+          return;
+        } else {
+          statusMessage.style.color = '#e74c3c';
+          statusMessage.textContent = "L'envoi a échoué. Vérifiez vos réponses puis réessayez.";
         }
-      } catch {
+      } catch (error) {
+        console.error("Erreur lors de l'envoi du formulaire :", error);
+        statusMessage.style.color = '#e74c3c';
+        statusMessage.textContent = "Impossible d'envoyer votre inscription. Vérifiez votre connexion puis réessayez.";
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalBtnText;
@@ -115,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateHeroTextVisibility();
   }
 
-  const animatedElements = document.querySelectorAll('.grille-info, .grille-form, .detail-item, .detail-item h3, .detail-item p, .buton-inscr, citation');
+  const animatedElements = document.querySelectorAll('.formation-promo, .grille-info, .grille-form, .detail-item, .detail-item h3, .detail-item p, .buton-inscr, citation');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
